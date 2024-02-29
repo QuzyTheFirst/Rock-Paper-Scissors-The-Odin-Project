@@ -4,44 +4,44 @@ const paper = "paper";
 const scissors = "scissors";
 const attackTypes = [rock, paper, scissors];
 
-// Variables for player and computer selected attacks
-let computerSelection = "";
-let playerSelection = "";
-
-//Points variable
+// Points variable
 let computerWinPoints = 0;
 let playerWinPoints = 0;
 
-// StartGame
+// Start Game
 PlayGame(5);
-
-FindWinner();
 
 
 function PlayGame(roundsCount) {
+    // Clear points
+    computerWinPoints = 0;
+    playerWinPoints = 0;
+
     for (let i = 0; i < roundsCount; i++) {
-        // Clean player and computer attack types
-        computerSelection = "";
-        playerSelection = "";
+        // Variables for player and computer selected attacks
+        let computerSelection = "";
+        let playerSelection = "";
 
         // Let pc choose his attack type
         computerSelection = GetComputerChoice();
         console.log("Computer: " + computerSelection);
 
         // Ask user for his attack type
-        do{
+        do {
             playerSelection = prompt("Choose your attack type[rock, paper, scissors]:")?.toLowerCase();
-        } while(!IsAttackValid(playerSelection))
+        } while (!IsAttackValid(playerSelection))
         console.log("Player: " + playerSelection);
 
         // Check who has won a battle
         PlayRound(playerSelection, computerSelection);
     }
+
+    FindWinner();
 }
 
 function PlayRound(playerSelection, computerSelection) {
     // your code here!
-    if(playerSelection === computerSelection){
+    if (playerSelection === computerSelection) {
         console.log(" | This round is a tie!");
     }
     else if (
@@ -58,15 +58,15 @@ function PlayRound(playerSelection, computerSelection) {
     }
 }
 
-function FindWinner(){
-    if(playerWinPoints > computerWinPoints){
-        console.log("Player has won a game!");
-    }    
-    else if(playerWinPoints === computerWinPoints){
-        console.log("Game has ended with a tie!");
+function FindWinner() {
+    if (playerWinPoints > computerWinPoints) {
+        console.log(" | | Player has won a game!");
     }
-    else{
-        console.log("Computer has won a game!");
+    else if (playerWinPoints === computerWinPoints) {
+        console.log(" | | Game has ended with a tie!");
+    }
+    else {
+        console.log(" | | Computer has won a game!");
     }
 }
 
